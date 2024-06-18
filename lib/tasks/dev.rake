@@ -1,5 +1,5 @@
 desc "Fill the database tables with some sample data"
-task({ :sample_data => :environment }) do
+task({ sample_data: :environment }) do
   puts "Sample data task running"
   if Rails.env.development?
     Board.destroy_all
@@ -11,7 +11,7 @@ task({ :sample_data => :environment }) do
       ActiveRecord::Base.connection.reset_pk_sequence!(t)
     end
   end
-  
+
   5.times do
     board = Board.new
     board.name = Faker::Address.community
